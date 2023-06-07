@@ -1,0 +1,43 @@
+<x-error title="Error Offline">
+    <!-- Main content -->
+    <div class="content-wrapper">
+
+        <!-- Inner content -->
+        <div class="content-inner">
+
+            <!-- Content area -->
+            <div class="content d-flex justify-content-center align-items-center">
+
+                <!-- Container -->
+                <div class="flex-fill">
+
+                    <!-- Error title -->
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('admin/assets/images/error_bg.svg') }}" class="img-fluid mb-3" height="230"
+                            alt="">
+                        <h1 class="display-3 fw-semibold lh-1 mb-3">Offline</h1>
+                        <h5>Sorry, our website is temporarily offline. <br> We'll be back shortly.</h5>
+                    </div>
+                    <!-- /error title -->
+
+                    <!-- Error content -->
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">
+                            <i class="ph-house me-2"></i>
+                            Return to dashboard
+                        </a>
+                    </div>
+                    <!-- /error wrapper -->
+
+                </div>
+                <!-- /container -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /inner content -->
+
+    </div>
+    <!-- /main content -->
+</x-error>
