@@ -91,15 +91,15 @@ class AuthController extends Controller
             'confirm_password.same' => 'Konfirmasi password harus sama dengan password.',
         ]);
 
-        $account = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'user',
-            'name' => $request->name,
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = 'user';
+        $user->save();
 
-        return redirect()->back()->with('success', 'Akun berhasil didaftarkan!.');
+        return redirect()->route('login')->with('success', 'Akun berhasil didaftarkan!');
     }
 
     public function logout(Request $request)

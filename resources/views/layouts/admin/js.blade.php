@@ -20,3 +20,4 @@
 <script src="{{ asset('admin/assets/demo/charts/pages/dashboard/pies.js') }}"></script>
 <script src="{{ asset('admin/assets/demo/charts/pages/dashboard/bullets.js') }}"></script>
 <!-- /theme JS files -->
+@notifyJs

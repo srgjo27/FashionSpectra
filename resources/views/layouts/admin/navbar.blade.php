@@ -36,6 +36,55 @@
                 </div>
             </li>
 
+            <li class="nav-item nav-item-dropdown-lg dropdown">
+                <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside">
+                    <i class="ph-chats"></i>
+                    <span
+                        class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">8</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-scrollable-sm wmin-lg-400 p-0">
+                    <div class="d-flex align-items-center p-3">
+                        <h6 class="mb-0">Messages</h6>
+                        <div class="ms-auto">
+                            <a href="#" class="text-body">
+                                <i class="ph-plus-circle"></i>
+                            </a>
+                            <a href="#search_messages" class="collapsed text-body ms-2" data-bs-toggle="collapse">
+                                <i class="ph-magnifying-glass"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="collapse" id="search_messages">
+                        <div class="px-3 mb-2">
+                            <div class="form-control-feedback form-control-feedback-start">
+                                <input type="text" class="form-control" placeholder="Search messages">
+                                <div class="form-control-feedback-icon">
+                                    <i class="ph-magnifying-glass"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-menu-scrollable pb-2">
+                        <!-- TODO -->
+                    </div>
+
+                    <div class="d-flex border-top py-2 px-3">
+                        <a href="#" class="text-body">
+                            <i class="ph-checks me-1"></i>
+                            Baca Semua
+                        </a>
+                        <a href="#" class="text-body ms-auto">
+                            Lihat Semua
+                            <i class="ph-arrow-circle-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas"
                     data-bs-target="#notifications">

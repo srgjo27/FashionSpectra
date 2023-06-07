@@ -7,4 +7,3 @@
 <script src="{{ asset('admin/layout/assets/js/app.js') }}"></script>
 <script src="{{ asset('admin/assets/demo/pages/form_validation_styles.js') }}"></script>
 <!-- /theme JS files -->
-@notifyJs

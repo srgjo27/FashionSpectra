@@ -66,8 +66,8 @@
                 </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
-                        <i class="ph-list"></i>
-                        <span>Menu</span>
+                        <i class="ph-package"></i>
+                        <span>Produk</span>
                     </a>
                     <ul class="nav-group-sub collapse">
                         <li class="nav-item"><a href="#" class="nav-link active">Default Sub-menu</a></li>

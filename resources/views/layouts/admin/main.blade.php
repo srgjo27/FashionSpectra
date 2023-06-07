@@ -3,6 +3,7 @@
 @include('layouts.admin.head')
 
 <body>
+    {{-- @include('notify::messages') --}}
     <!-- Page content -->
     <div class="page-content">
         @include('layouts.admin.sidebar')

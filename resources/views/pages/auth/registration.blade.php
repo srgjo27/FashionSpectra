@@ -6,7 +6,7 @@
             <!-- Content area -->
             <div class="content d-flex justify-content-center align-items-center">
                 <!-- Registration form -->
-                <form action="{{ route('do_register') }}" class="flex-fill" method="POST">
+                <form action="{{ route('do_register') }}" class="flex-fill needs-validation" method="POST" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-lg-6 offset-lg-3">
@@ -24,10 +24,14 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Nama</label>
+                                        <label class="form-label">Nama <span class="text-danger">*</span></label>
                                         <div class="form-control-feedback form-control-feedback-start">
-                                            <input type="text" class="form-control" name="name"
-                                                placeholder="Nama Lengkap">
+                                            <input type="text"
+                                                class="form-control @error('name') is-invalid  @enderror" name="name"
+                                                placeholder="Nama Lengkap" required value="{{ old('name') }}">
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <div class="form-control-feedback-icon">
                                                 <i class="ph-user-circle text-muted"></i>
                                             </div>
@@ -35,10 +39,15 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Username</label>
+                                        <label class="form-label">Username <span class="text-danger">*</span></label>
                                         <div class="form-control-feedback form-control-feedback-start">
-                                            <input type="text" class="form-control" name="username"
-                                                placeholder="Username">
+                                            <input type="text"
+                                                class="form-control @error('username') is-invalid  @enderror"
+                                                name="username" placeholder="Username" required
+                                                value="{{ old('username') }}">
+                                            @error('username')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <div class="form-control-feedback-icon">
                                                 <i class="ph-user-circle text-muted"></i>
                                             </div>
@@ -48,10 +57,15 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Password</label>
+                                                <label class="form-label">Password <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="form-control-feedback form-control-feedback-start">
-                                                    <input type="password" class="form-control" name="password"
-                                                        placeholder="•••••••••••">
+                                                    <input type="password"
+                                                        class="form-control @error('password') is-invalid  @enderror"
+                                                        name="password" placeholder="•••••••••••" required>
+                                                    @error('password')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                     <div class="form-control-feedback-icon">
                                                         <i class="ph-lock text-muted"></i>
                                                     </div>
@@ -61,10 +75,15 @@
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Konfirmasi Password</label>
+                                                <label class="form-label">Konfirmasi Password <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="form-control-feedback form-control-feedback-start">
-                                                    <input type="password" class="form-control" name="confirm_password"
-                                                        placeholder="•••••••••••">
+                                                    <input type="password"
+                                                        class="form-control @error('confirm_password') is-invalid  @enderror"
+                                                        name="confirm_password" placeholder="•••••••••••" required>
+                                                    @error('confirm_password')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                     <div class="form-control-feedback-icon">
                                                         <i class="ph-lock text-muted"></i>
                                                     </div>
@@ -76,10 +95,16 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Email</label>
+                                                <label class="form-label">Email <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="form-control-feedback form-control-feedback-start">
-                                                    <input type="email" class="form-control" name="email"
-                                                        placeholder="example@mail.com">
+                                                    <input type="email"
+                                                        class="form-control @error('email') is-invalid  @enderror"
+                                                        name="email" placeholder="example@mail.com" required
+                                                        value="{{ old('email') }}">
+                                                    @error('email')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                     <div class="form-control-feedback-icon">
                                                         <i class="ph-at text-muted"></i>
                                                     </div>
@@ -89,10 +114,16 @@
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Konfirmasi Email</label>
+                                                <label class="form-label">Konfirmasi Email <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="form-control-feedback form-control-feedback-start">
-                                                    <input type="email" class="form-control" name="confirm_email"
-                                                        placeholder="example@mail.com">
+                                                    <input type="email"
+                                                        class="form-control @error('confirm_email') is-invalid  @enderror"
+                                                        name="confirm_email" placeholder="example@mail.com" required
+                                                        value="{{ old('confirm_email') }}">
+                                                    @error('confirm_email')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                     <div class="form-control-feedback-icon">
                                                         <i class="ph-at text-muted"></i>
                                                     </div>
@@ -103,7 +134,8 @@
 
                                     <div>
                                         <label class="form-check">
-                                            <input type="checkbox" name="remember" class="form-check-input">
+                                            <input type="checkbox" name="accept" id="accept"
+                                                class="form-check-input">
                                             <span class="form-check-label">Setuju <a href="#">&nbsp;ketentuan
                                                     layanan</a></span>
                                         </label>
@@ -128,3 +160,7 @@
     </div>
     <!-- /main content -->
 </x-auth>
+
+<script>
+    // TODO
+</script>
