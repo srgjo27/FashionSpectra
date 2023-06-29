@@ -96,7 +96,6 @@ class AuthController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->role = 'user';
         $user->save();
 
         return redirect()->route('login')->with('success', 'Akun berhasil didaftarkan!');

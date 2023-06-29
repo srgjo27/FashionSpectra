@@ -8,6 +8,7 @@
         </div>
 
         <div class="navbar-collapse flex-lg-1 order-2 order-lg-1 collapse" id="navbar_search">
+            <!--
             <div class="navbar-search flex-fill dropdown mt-2 mt-lg-0">
                 <div class="form-control-feedback form-control-feedback-start flex-grow-1">
                     <input type="text" class="form-control" placeholder="Search" data-bs-toggle="dropdown">
@@ -16,16 +17,10 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
 
         <ul class="nav hstack gap-sm-1 flex-row justify-content-end order-1 order-lg-2">
-            <li class="nav-item d-lg-none">
-                <a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill"
-                    data-bs-toggle="collapse">
-                    <i class="ph-magnifying-glass"></i>
-                </a>
-            </li>
-
             <li class="nav-item nav-item-dropdown-lg dropdown">
                 <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown">
                     <i class="ph-squares-four"></i>
@@ -46,7 +41,7 @@
 
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-scrollable-sm wmin-lg-400 p-0">
                     <div class="d-flex align-items-center p-3">
-                        <h6 class="mb-0">Messages</h6>
+                        <h6 class="mb-0">Pesan</h6>
                         <div class="ms-auto">
                             <a href="#" class="text-body">
                                 <i class="ph-plus-circle"></i>
@@ -107,21 +102,21 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <a href="#" class="dropdown-item">
                         <i class="ph-user-circle me-2"></i>
-                        My profile
+                        Profil
                     </a>
                     <a href="#" class="dropdown-item">
                         <i class="ph-envelope-open me-2"></i>
-                        My inbox
+                        Kotak Masuk
                         <span class="badge bg-primary rounded-pill ms-auto">26</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">
                         <i class="ph-gear me-2"></i>
-                        Account settings
+                        Pengaturan Akun
                     </a>
                     <a href="{{ route('do_logout') }}" class="dropdown-item">
                         <i class="ph-sign-out me-2"></i>
-                        Logout
+                        Keluar
                     </a>
                 </div>
             </li>

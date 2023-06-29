@@ -53,11 +53,12 @@
 
                 <!-- Main -->
                 <li class="nav-item-header">
-                    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Main</div>
+                    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">ONLINE</div>
                     <i class="ph-dots-three sidebar-resize-show"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('auth.admin.dashboard') }}"
+                        class="nav-link {{ request()->routeIs('auth.admin.dashboard') ? ' active' : '' }}">
                         <i class="ph-house"></i>
                         <span>
                             Dashboard
@@ -70,17 +71,20 @@
                         <span>Produk</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link active">Default Sub-menu</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 2</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 3</a>
+                        <li class="nav-item"><a href="{{ route('auth.admin.product-clothes') }}"
+                                class="nav-link {{ request()->routeIs('auth.admin.product-clothes') ? ' active' : '' }}">
+                                <i class="ph-table"></i>Pakaian</a></li>
+                        <li class="nav-item"><a href="{{ route('auth.admin.product-shoes') }}"
+                                class="nav-link {{ request()->routeIs('auth.admin.product-shoes') ? ' active' : '' }}"><i
+                                    class="ph-table"></i>Sepatu</a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 4</a>
+                        <li class="nav-item"><a href="" class="nav-link"><i
+                                    class="ph-table"></i>Aksesoris/Perhiasan</a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 5</a>
+                        <li class="nav-item"><a href="" class="nav-link"><i class="ph-table"></i>Produk
+                                Kecantikan</a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 6</a>
-                        </li>
-                        <li class="nav-item"><a href="#x" class="nav-link disabled">Sub-menu 7
+                        <li class="nav-item"><a href="#" class="nav-link disabled">Fitur Selanjutnya
                                 <span class="badge align-self-center ms-auto">Coming soon</span></a>
                         </li>
                     </ul>
@@ -88,20 +92,12 @@
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-list"></i>
-                        <span>Menu</span>
+                        <span>Pesanan</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link active">Default Sub-menu</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 1</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Sub-menu 2</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 3</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 4</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 5</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 6</a>
-                        </li>
-                        <li class="nav-item"><a href="#x" class="nav-link disabled">Sub-menu 7
+                        <li class="nav-item"><a href="#" class="nav-link disabled">Fitur Selanjutnya
                                 <span class="badge align-self-center ms-auto">Coming soon</span></a>
                         </li>
                     </ul>
@@ -109,23 +105,21 @@
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-list"></i>
-                        <span>Menu</span>
+                        <span>Pembayaran</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link active">Default Sub-menu</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 1</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Sub-menu 2</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Sub-menu 3</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 4</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 5</a>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sub-menu 6</a>
-                        </li>
-                        <li class="nav-item"><a href="#x" class="nav-link disabled">Sub-menu 7
+                        <li class="nav-item"><a href="#" class="nav-link disabled">Fitur Selanjutnya
                                 <span class="badge align-self-center ms-auto">Coming soon</span></a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-item-header">
+                    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">ONSITE</div>
+                    <i class="ph-dots-three sidebar-resize-show"></i>
                 </li>
                 <!-- /main -->
             </ul>
