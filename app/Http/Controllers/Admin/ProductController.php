@@ -104,7 +104,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::join('stocks', 'products.id', '=', 'stocks.product_id')
+            ->select('products.*', 'stocks.quantity')
+            ->where('products.id', '=', $id)
+            ->first();
+        return view('pages.admin.product.show', compact('product'));
     }
 
     /**

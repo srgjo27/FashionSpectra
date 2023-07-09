@@ -113,7 +113,7 @@
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td><img src="{{ asset('storage/product/' . $item->image) }}"
-                                                alt="{{ $item->image }}" style="width: 100px; height: 100px;">
+                                                alt="{{ $item->image }}" data-bs-popup="lightbox" class="img-preview">
                                         </td>
                                         <td>
                                             @if ($item->stock->quantity <= 15)
@@ -167,7 +167,7 @@
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td><img src="{{ asset('storage/product/' . $item->image) }}"
-                                                alt="{{ $item->image }}" style="width: 100px; height: 100px;">
+                                                alt="{{ $item->image }}" data-bs-popup="lightbox" class="img-preview">
                                         </td>
                                         <td>
                                             @if ($item->stock->quantity <= 15)
@@ -221,7 +221,8 @@
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td><img src="{{ asset('storage/product/' . $item->image) }}"
-                                                alt="{{ $item->image }}" style="width: 100px; height: 100px;">
+                                                alt="{{ $item->image }}" data-bs-popup="lightbox"
+                                                class="img-preview">
                                         </td>
                                         <td>
                                             @if ($item->stock->quantity <= 15)
@@ -275,7 +276,8 @@
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td><img src="{{ asset('storage/product/' . $item->image) }}"
-                                                alt="{{ $item->image }}" style="width: 100px; height: 100px;">
+                                                alt="{{ $item->image }}" data-bs-popup="lightbox"
+                                                class="img-preview">
                                         </td>
                                         <td>
                                             @if ($item->stock->quantity <= 15)
@@ -329,7 +331,8 @@
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td><img src="{{ asset('storage/product/' . $item->image) }}"
-                                                alt="{{ $item->image }}" style="width: 100px; height: 100px;">
+                                                alt="{{ $item->image }}" data-bs-popup="lightbox"
+                                                class="img-preview">
                                         </td>
                                         <td>
                                             @if ($item->stock->quantity <= 15)

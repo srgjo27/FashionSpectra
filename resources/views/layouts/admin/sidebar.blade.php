@@ -73,15 +73,15 @@
                     <ul class="nav-group-sub collapse">
                         <li class="nav-item"><a href="{{ route('auth.admin.product-clothes') }}"
                                 class="nav-link {{ request()->routeIs('auth.admin.product-clothes') ? ' active' : '' }}">
-                                <i class="ph-table"></i>Pakaian</a></li>
+                                <i class="ph-t-shirt"></i>Pakaian</a></li>
                         <li class="nav-item"><a href="{{ route('auth.admin.product-shoes') }}"
                                 class="nav-link {{ request()->routeIs('auth.admin.product-shoes') ? ' active' : '' }}"><i
-                                    class="ph-table"></i>Sepatu</a>
+                                    class="ph-t-shirt"></i>Sepatu</a>
                         </li>
                         <li class="nav-item"><a href="" class="nav-link"><i
-                                    class="ph-table"></i>Aksesoris/Perhiasan</a>
+                                    class="ph-watch"></i>Aksesoris/Perhiasan</a>
                         </li>
-                        <li class="nav-item"><a href="" class="nav-link"><i class="ph-table"></i>Produk
+                        <li class="nav-item"><a href="" class="nav-link"><i class="ph-mask-happy"></i>Produk
                                 Kecantikan</a>
                         </li>
                         <li class="nav-item"><a href="#" class="nav-link disabled">Fitur Selanjutnya
@@ -91,7 +91,7 @@
                 </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
-                        <i class="ph-list"></i>
+                        <i class="ph-shopping-cart"></i>
                         <span>Pesanan</span>
                     </a>
                     <ul class="nav-group-sub collapse">
@@ -104,7 +104,7 @@
                 </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
-                        <i class="ph-list"></i>
+                        <i class="ph-money"></i>
                         <span>Pembayaran</span>
                     </a>
                     <ul class="nav-group-sub collapse">
