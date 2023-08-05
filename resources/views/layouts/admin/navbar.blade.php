@@ -114,7 +114,7 @@
                         <i class="ph-gear me-2"></i>
                         Pengaturan Akun
                     </a>
-                    <a href="{{ route('do_logout') }}" class="dropdown-item">
+                    <a href="#" class="dropdown-item" id="do_logout">
                         <i class="ph-sign-out me-2"></i>
                         Keluar
                     </a>
@@ -124,3 +124,30 @@
     </div>
 </div>
 <!-- /main navbar -->
+
+<script>
+    // Add event listener to the logout button
+    document.getElementById('do_logout').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Show the SweetAlert confirmation dialog
+        Swal.fire({
+            title: 'Konfirmasi Keluar',
+            text: 'Anda yakin ingin keluar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Keluar',
+            cancelButtonText: 'Tidak',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger ms-2'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to the logout URL after confirming
+                window.location.href = "{{ route('do_logout') }}";
+            }
+        });
+    });
+</script>

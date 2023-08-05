@@ -100,7 +100,7 @@
                                                 <div class="form-control-feedback form-control-feedback-start">
                                                     <input type="email"
                                                         class="form-control @error('email') is-invalid  @enderror"
-                                                        name="email" placeholder="example@mail.com" required
+                                                        name="email" placeholder="contoh@gmail.com" required
                                                         value="{{ old('email') }}">
                                                     @error('email')
                                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -119,7 +119,7 @@
                                                 <div class="form-control-feedback form-control-feedback-start">
                                                     <input type="email"
                                                         class="form-control @error('confirm_email') is-invalid  @enderror"
-                                                        name="confirm_email" placeholder="example@mail.com" required
+                                                        name="confirm_email" placeholder="contoh@gmail.com" required
                                                         value="{{ old('confirm_email') }}">
                                                     @error('confirm_email')
                                                         <div class="invalid-feedback">{{ $message }}</div>

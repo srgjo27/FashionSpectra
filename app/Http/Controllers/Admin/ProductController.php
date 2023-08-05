@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Size;
 use App\Models\Stock;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -40,14 +44,52 @@ class ProductController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexAccessories()
+    {
+        $products = Product::join('stocks', 'products.id', '=', 'stocks.product_id')
+            ->select('products.*', 'stocks.quantity')
+            ->get();
+
+        return view('pages.admin.product.main-accessories', compact('products'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexBeauty()
+    {
+        $products = Product::join('stocks', 'products.id', '=', 'stocks.product_id')
+            ->select('products.*', 'stocks.quantity')
+            ->get();
+
+        return view('pages.admin.product.main-beauty', compact('products'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $categories = Category::with('sizes')->get();
-        return view('pages.admin.product.create', compact('categories'));
+        $categories = Category::all();
+        return view('pages.admin.product.create', ['categories' => $categories]);
+    }
+
+    public function getSizeProduct($id)
+    {
+        try {
+            $size = Size::where('category_id', $id)->get();
+            return response()->json($size);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
     }
 
     /**
@@ -58,9 +100,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
+            'size_id' => 'nullable',
             'description' => 'required',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:10240',
@@ -76,24 +119,37 @@ class ProductController extends Controller
             'image.max' => 'Ukuran gambar harus maksimal 10 MB.',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+            ], 400);
+        }
+
         $product = new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->description = $request->description;
-        $product->size_id = $request->size_id;
+        $product->size_id = $request->size_id ?? null;
         $product->price = $request->price;
         if ($request->hasFile('image')) {
-            $request->file('image')->storeAs('public/product', $request->file('image')->getClientOriginalName());
-            $product->image = $request->file('image')->getClientOriginalName();
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $randomName = Str::random(40); // Generate a random 40-character string
+            $imageName = $randomName . '.' . $extension;
+            $request->file('image')->storeAs('public/product', $imageName);
+            $product->image = $imageName;
         }
         $product->save();
 
         $stok = new Stock();
         $stok->product_id = $product->id;
-        $stok->quantity = 0;
+        $stok->quantity = $request->quantity ?? 0;
         $stok->save();
 
-        return redirect()->route('auth.admin.product-clothes')->with('success', 'Produk berhasil ditambahkan.');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Produk berhasil ditambahkan.',
+        ], 200);
     }
 
     /**
@@ -133,9 +189,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
+            'size_id' => 'nullable',
             'description' => 'required',
             'price' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg|max:10240',
@@ -150,6 +207,13 @@ class ProductController extends Controller
             'image.max' => 'Ukuran gambar harus maksimal 10 MB.',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+            ], 400);
+        }
+
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;
@@ -157,9 +221,11 @@ class ProductController extends Controller
         $product->size_id = $request->size_id;
         $product->price = $request->price;
         if ($request->hasFile('image')) {
-            Storage::delete('public/product/' . $product->image);
-            $request->file('image')->storeAs('public/product', $request->file('image')->getClientOriginalName());
-            $product->image = $request->file('image')->getClientOriginalName();
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $randomName = Str::random(40); // Generate a random 40-character string
+            $imageName = $randomName . '.' . $extension;
+            $request->file('image')->storeAs('public/product', $imageName);
+            $product->image = $imageName;
         }
         $product->save();
 
@@ -168,7 +234,10 @@ class ProductController extends Controller
         $stok->quantity = $request->quantity;
         $stok->save();
 
-        return redirect()->route('auth.admin.product-clothes')->with('success', 'Produk berhasil diperbarui.');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Produk berhasil diubah.',
+        ], 200);
     }
 
     /**
@@ -179,9 +248,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        Storage::delete('storage/product/' . $product->image);
-        $product->delete();
-        return redirect()->route('auth.admin.product-clothes')->with('success', 'Produk berhasil dihapus');
+        //$product = Product::findOrFail($id);
+        $product = Product::where('id', $id)->first();
+        Storage::delete('public/product/' . $product->image);
+        Product::where('id', $id)->delete();
+        //$product->delete();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Produk berhasil dihapus 😭',
+        ], 200);
     }
 }

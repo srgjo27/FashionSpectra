@@ -78,10 +78,13 @@
                                 class="nav-link {{ request()->routeIs('auth.admin.product-shoes') ? ' active' : '' }}"><i
                                     class="ph-t-shirt"></i>Sepatu</a>
                         </li>
-                        <li class="nav-item"><a href="" class="nav-link"><i
+                        <li class="nav-item"><a href="{{ route('auth.admin.product-accessories') }}"
+                                class="nav-link {{ request()->routeIs('auth.admin.product-accessories') ? ' active' : '' }}"><i
                                     class="ph-watch"></i>Aksesoris/Perhiasan</a>
                         </li>
-                        <li class="nav-item"><a href="" class="nav-link"><i class="ph-mask-happy"></i>Produk
+                        <li class="nav-item"><a href="{{ route('auth.admin.product-beauty') }}"
+                                class="nav-link {{ request()->routeIs('auth.admin.product-beauty') ? ' active' : '' }}"><i
+                                    class="ph-mask-happy"></i>Produk
                                 Kecantikan</a>
                         </li>
                         <li class="nav-item"><a href="#" class="nav-link disabled">Fitur Selanjutnya

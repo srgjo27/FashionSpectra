@@ -71,12 +71,13 @@
                                         <td>
                                             <a href="{{ route('auth.admin.product.edit', $item->id) }}"
                                                 class="text-primary m-6"><i class="ph-pencil"></i></a>
-                                            <form action="{{ route('auth.admin.product.delete', $item->id) }}"
+                                            <form id="form_delete"
+                                                action="{{ route('auth.admin.product.delete', $item->id) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-link text-danger"><i
-                                                        class="ph-trash danger"></i></button>
+                                                <button type="button" class="btn btn-link text-danger btn-delete"><i
+                                                        class="ph-trash danger" id="btn_delete"></i></button>
                                             </form>
                                             <a href="{{ route('auth.admin.product.show', $item->id) }}"
                                                 class="text-success m-6"><i class="ph-eye"></i></a>
@@ -112,7 +113,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
-                                        <td><img src="{{ asset('storage/product/' . $item->image) }}"
+                                        <td><img src="{{ asset('storage/public/product/' . $item->image) }}"
                                                 alt="{{ $item->image }}" data-bs-popup="lightbox" class="img-preview">
                                         </td>
                                         <td>
@@ -166,7 +167,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
-                                        <td><img src="{{ asset('storage/product/' . $item->image) }}"
+                                        <td><img src="{{ asset('storage/public/product/' . $item->image) }}"
                                                 alt="{{ $item->image }}" data-bs-popup="lightbox" class="img-preview">
                                         </td>
                                         <td>
@@ -220,7 +221,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
-                                        <td><img src="{{ asset('storage/product/' . $item->image) }}"
+                                        <td><img src="{{ asset('storage/public/product/' . $item->image) }}"
                                                 alt="{{ $item->image }}" data-bs-popup="lightbox"
                                                 class="img-preview">
                                         </td>
@@ -275,7 +276,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
-                                        <td><img src="{{ asset('storage/product/' . $item->image) }}"
+                                        <td><img src="{{ asset('storage/public/product/' . $item->image) }}"
                                                 alt="{{ $item->image }}" data-bs-popup="lightbox"
                                                 class="img-preview">
                                         </td>
@@ -330,7 +331,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->size->size }}</td>
                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
-                                        <td><img src="{{ asset('storage/product/' . $item->image) }}"
+                                        <td><img src="{{ asset('storage/public/product/' . $item->image) }}"
                                                 alt="{{ $item->image }}" data-bs-popup="lightbox"
                                                 class="img-preview">
                                         </td>
@@ -361,10 +362,78 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
         <!-- /basic initialization -->
     </div>
     <!-- /content area -->
 </x-admin>
+
+<script>
+    $(document).ready(function() {
+        $(".btn-delete").click(function() {
+            var form = $('#form_delete');
+            var url = form.attr('action');
+            var method = form.attr('method');
+            var btn_submit = $(this);
+
+            swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Tidak, batalkan!',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                }
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: method,
+                        data: form.serialize(),
+                        beforeSend: function() {
+                            btn_submit.attr('disabled', true);
+                            btn_submit.html('<i class="ph-spin ph-refresh"></i>');
+                        },
+                        success: function(response) {
+                            btn_submit.attr('disabled', false);
+                            btn_submit.html('<i class="ph-trash danger"></i>');
+                            swal.fire({
+                                icon: 'success',
+                                title: response.status,
+                                text: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                location.reload();
+                            });
+                        },
+                        error: function(xhr) {
+                            btn_submit.attr('disabled', false);
+                            btn_submit.html('<i class="ph-trash danger"></i>');
+                            swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: 'Data gagal dihapus 🥵',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    swal.fire({
+                        icon: 'info',
+                        title: 'Dibatalkan',
+                        text: 'Data Anda aman 🫡',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        });
+    });
+</script>

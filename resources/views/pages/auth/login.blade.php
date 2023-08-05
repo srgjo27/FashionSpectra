@@ -11,17 +11,17 @@
                     <div class="card mb-0">
                         <div class="card-body">
                             @if ($errors->has('login_error'))
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
                                     {{ $errors->first('login_error') }}
                                 </div>
                             @endif
 
                             @if (session('success'))
                                 <div class="alert alert-success d-flex align-items-center" role="alert">
-                                    <i class="ph-check-circle-fill me-2"></i>
                                     <div>{{ session('success') }}</div>
                                 </div>
                             @endif
+
                             <div class="text-center mb-3">
                                 <div class="d-inline-flex align-items-center justify-content-center mb-4 mt-2">
                                     <img src="{{ asset('admin/assets/images/logo_icon.svg') }}" class="h-48px"
@@ -113,8 +113,8 @@
     }
 
     function getRandomDelay() {
-        // Generate a random delay between 5 and 10 seconds (in milliseconds)
-        return Math.floor(Math.random() * 5000) + 5000;
+        // Generate a random delay between 1 and 3 seconds (in milliseconds)
+        return Math.floor(Math.random() * 2000) + 1000;
     }
 
     document.getElementById("togglePassword").addEventListener("click", function() {
